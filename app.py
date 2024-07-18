@@ -6,8 +6,10 @@ import os
 # Configure the Google API key
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
+st.image('logo.png', width=200)
+
 # Streamlit app title
-st.title("Gemini Vision Object Detection")
+st.title("Vision LLM")
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
