@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 import PIL.Image
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import os
 
 # Configure the Google API key
@@ -29,7 +30,14 @@ if st.button("Generate Response"):
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
         
         # Generate content with the model
-        response = model.generate_content([custom_prompt, image])
+        response = model.generate_content([custom_prompt, image],
+                                          safety_settings={
+        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_UNSPECIFIED: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
+    })
         
         # Display the result
         st.write("Response:")
