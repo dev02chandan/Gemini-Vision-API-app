@@ -16,6 +16,9 @@ st.title("Vision LLM")
 # Option to choose between image or video
 media_type = st.radio("Choose media type:", ("Image", "Video"))
 
+# Option to choose between the gemini models
+model_choice = st.selectbox("Choose the Gemini model:", ("gemini-1.5-Flash", "gemini-1.5-Pro"))
+
 # Upload media
 if media_type == "Image":
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -35,7 +38,7 @@ if st.button("Generate Response"):
 
             # Load and process the image
             st.write("Processing the image...")
-            model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")
+            model = genai.GenerativeModel(model_name=f"models/{model_choice.lower()}")
 
             # Generate content with the model
             response = model.generate_content([custom_prompt, image],
@@ -75,8 +78,8 @@ if st.button("Generate Response"):
             # Create the prompt
             prompt = custom_prompt
 
-            # Set the model to Gemini 1.5 Pro
-            model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
+            # Set the model based on user choice
+            model = genai.GenerativeModel(model_name=f"models/{model_choice.lower()}")
 
             # Make the LLM request
             st.write("Making LLM inference request...")
