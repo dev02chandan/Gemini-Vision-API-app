@@ -17,7 +17,9 @@ st.title("Vision LLM")
 media_type = st.radio("Choose media type:", ("Image", "Video"))
 
 # Option to choose between the gemini models
-model_choice = st.selectbox("Choose the Gemini model:", ("gemini-1.5-Flash", "gemini-1.5-Pro"))
+model_choice = st.selectbox("Choose the model:", ("Model F", "Model P"))
+
+model_choice = 'gemini-1.5-Flash' if model_choice=='Model F' else 'gemini-1.5-Pro'
 
 # Upload media
 if media_type == "Image":
