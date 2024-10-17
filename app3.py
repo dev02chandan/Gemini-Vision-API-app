@@ -79,7 +79,7 @@ if st.button("Generate Response"):
 
         # Display the response text
         st.write("Response:")
-        st.write(response.text)
+        # st.write(response.text)
 
         # Load the JSON output from the response
         json_output = json.loads(response.text)
