@@ -13,7 +13,7 @@ genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 st.image("logo.png", width=300)
 
 # Streamlit app title
-st.title("Bounding Boxes with Gemini")
+st.title("Bounding Boxes")
 
 # Option to choose between image or video
 # media_type = st.radio("Choose media type:", ("Image"))
